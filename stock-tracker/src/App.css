@@ -211,7 +211,7 @@ body {
   max-width: 150px;
 }
 
-/* Responsive Styles */
+/* Responsive Styles - Mobile First Approach */
 @media (max-width: 992px) {
   .sidebar {
     position: fixed;
@@ -219,10 +219,12 @@ body {
     top: 0;
     bottom: 0;
     z-index: 1000;
+    transition: transform 0.3s ease;
   }
   
   .sidebar.open {
     left: 0;
+    width: 280px;
   }
   
   .main-content {
@@ -232,43 +234,136 @@ body {
 }
 
 @media (max-width: 768px) {
+  /* Reset body width constraints */
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
   .stats-card {
-    height: 100px;
+    height: auto;
+    min-height: 100px;
+    width: 100%;
+    margin-bottom: 15px;
   }
   
   .stats-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
   
   .stats-icon {
     font-size: 2rem;
+    opacity: 0.3;
   }
-  body{
-    width:440px;
+
+  /* Grid adjustments */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
   }
 }
 
 @media (max-width: 576px) {
+  /* Layout adjustments */
   .content-header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
   }
   
   .search-container {
+    width: 100%;
     max-width: 100%;
-    margin-top: 15px;
+    margin: 10px 0;
   }
-  
-  .stats-card {
-    height: 90px;
-    padding: 15px;
+
+  /* Full viewport sidebar */
+  .sidebar {
+    width: 100%;
+    left: -100%;
   }
-  
+
+  .sidebar.open {
+    width: 100%;
+  }
+
+  /* Stats grid becomes single column */
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Typography adjustments */
   .stats-card h3 {
     font-size: 1.3rem;
   }
-  
+
   .stats-icon {
     font-size: 1.8rem;
+  }
+
+  /* Touch targets */
+  button, .btn, .nav-link {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+@media (max-width: 440px) {
+  /* Extra small devices optimization */
+  body {
+    font-size: 14px;
+  }
+
+  .main-content {
+    padding: 10px;
+    padding-top: 60px;
+  }
+
+  .mobile-header {
+    padding: 8px 10px;
+  }
+
+  .sidebar .nav-link {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+
+  .stats-card {
+    padding: 12px;
+  }
+
+  .stats-card h3 {
+    font-size: 1.2rem;
+  }
+
+  /* Form elements */
+  .search-input {
+    padding: 6px 12px 6px 32px;
+    font-size: 0.9rem;
+  }
+
+  /* Hide decorative elements */
+  .stats-icon {
+    display: none;
+  }
+}
+
+/* Very small devices (Galaxy Fold, etc.) */
+@media (max-width: 320px) {
+  body {
+    font-size: 13px;
+  }
+
+  .main-content {
+    padding: 8px;
+    padding-top: 55px;
+  }
+
+  .stats-card {
+    padding: 10px;
+  }
+
+  .chart-container {
+    padding: 10px;
   }
 }
