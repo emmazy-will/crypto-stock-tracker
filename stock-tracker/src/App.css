@@ -211,36 +211,42 @@ body {
   max-width: 150px;
 }
 
-/* Responsive Styles - Mobile First Approach */
+/* Responsive Styles - Full Mobile Optimization */
 @media (max-width: 992px) {
+  /* Tablet and smaller desktop adjustments */
   .sidebar {
     position: fixed;
     left: -280px;
     top: 0;
     bottom: 0;
     z-index: 1000;
-    transition: transform 0.3s ease;
   }
   
   .sidebar.open {
     left: 0;
-    width: 280px;
   }
   
   .main-content {
     margin-left: 0;
     padding-top: 80px;
   }
+
+  /* Adjust stats grid for medium screens */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
 }
 
 @media (max-width: 768px) {
-  /* Reset body width constraints */
+  /* General mobile adjustments */
   html, body {
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
   }
 
+  /* Stats cards */
   .stats-card {
     height: auto;
     min-height: 100px;
@@ -249,7 +255,7 @@ body {
   }
   
   .stats-card h3 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
   
   .stats-icon {
@@ -257,42 +263,63 @@ body {
     opacity: 0.3;
   }
 
-  /* Grid adjustments */
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+  /* Chart containers */
+  .chart-container {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  /* Search bar */
+  .search-container {
+    max-width: 100%;
   }
 }
 
 @media (max-width: 576px) {
-  /* Layout adjustments */
-  .content-header {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .search-container {
-    width: 100%;
-    max-width: 100%;
-    margin: 10px 0;
+  /* Small mobile devices */
+  body {
+    font-size: 14px;
   }
 
-  /* Full viewport sidebar */
+  /* Layout adjustments */
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .main-content {
+    padding: 15px;
+    padding-top: 70px;
+  }
+
+  /* Full-width sidebar */
   .sidebar {
     width: 100%;
     left: -100%;
+    padding-top: 60px;
   }
 
   .sidebar.open {
     width: 100%;
   }
 
+  /* Content header */
+  .content-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
   /* Stats grid becomes single column */
   .stats-grid {
     grid-template-columns: 1fr;
+    gap: 15px;
   }
 
-  /* Typography adjustments */
+  /* Stats cards */
+  .stats-card {
+    height: auto;
+    padding: 15px;
+  }
+  
   .stats-card h3 {
     font-size: 1.3rem;
   }
@@ -301,17 +328,33 @@ body {
     font-size: 1.8rem;
   }
 
+  /* Form elements */
+  .search-container {
+    margin: 10px 0;
+  }
+
+  /* Mobile header */
+  .mobile-header {
+    padding: 10px 15px;
+  }
+
+  /* Navigation items */
+  .sidebar .nav-link {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+
   /* Touch targets */
-  button, .btn, .nav-link {
-    min-height: 44px;
+  button, .btn {
     min-width: 44px;
+    min-height: 44px;
   }
 }
 
 @media (max-width: 440px) {
-  /* Extra small devices optimization */
+  /* Extra small devices */
   body {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .main-content {
@@ -319,39 +362,27 @@ body {
     padding-top: 60px;
   }
 
-  .mobile-header {
-    padding: 8px 10px;
-  }
-
-  .sidebar .nav-link {
-    padding: 8px 12px;
-    font-size: 0.85rem;
-  }
-
-  .stats-card {
-    padding: 12px;
-  }
-
+  /* Stats cards */
   .stats-card h3 {
     font-size: 1.2rem;
-  }
-
-  /* Form elements */
-  .search-input {
-    padding: 6px 12px 6px 32px;
-    font-size: 0.9rem;
   }
 
   /* Hide decorative elements */
   .stats-icon {
     display: none;
   }
+
+  /* Form inputs */
+  .search-input {
+    padding: 8px 12px 8px 32px;
+    font-size: 0.9rem;
+  }
 }
 
 /* Very small devices (Galaxy Fold, etc.) */
 @media (max-width: 320px) {
   body {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .main-content {
@@ -365,5 +396,23 @@ body {
 
   .chart-container {
     padding: 10px;
+  }
+}
+
+/* Global mobile enhancements */
+@media (max-width: 992px) {
+  /* Prevent horizontal scrolling */
+  * {
+    max-width: 100%;
+  }
+
+  /* Smooth transitions */
+  .sidebar, .main-content {
+    transition: all 0.3s ease;
+  }
+
+  /* Ensure proper stacking */
+  .dashboard-container {
+    position: relative;
   }
 }
